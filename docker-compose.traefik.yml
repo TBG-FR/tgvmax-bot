@@ -16,6 +16,7 @@ services:
       - "traefik.http.routers.tgvmax.entrypoints=websecure"
       - "traefik.http.routers.tgvmax.tls=true"
       - "traefik.http.routers.tgvmax.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.tgvmax.middlewares=auth-basic"
   #
   back:
     container_name: tgvmax-back
