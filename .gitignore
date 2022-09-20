@@ -14,3 +14,7 @@ trainline_stations.json
 *.ntvs*
 *.njsproj
 *.sln
+
+# Sensitive data
+.env
+tgvmax.sqlite

@@ -1,0 +1,42 @@
+
+services:
+
+  rp:
+    image: nginx
+    ports:
+      - 8082:80
+    volumes:
+      - ./tgvmax.conf:/etc/nginx/conf.d/default.conf
+      
+# prod
+  front:
+    # image: tgvmax-bot-frontend
+    build: frontend/.
+    env_file:
+    - .env
+    ports:
+      - 8081:80
+
+# # dev
+#   front:
+#     image: node:12
+#     ports:
+#       - 8081:8080
+#     environment:
+#       - HOST=0.0.0.0
+#       - API_URL=http://host.docker.internal/api
+#     command: 'npm run dev'
+#     working_dir: /usr/src/app
+#     volumes:
+#       - ./frontend:/usr/src/app
+
+  back:
+    # image: tgvmax-bot-backend
+    build: backend/.
+    restart: on-failure
+    env_file:
+    - .env
+    ports:
+      - 8080:8080
+    volumes:
+      - ./tgvmax.sqlite:/usr/src/tgvmax.sqlite
