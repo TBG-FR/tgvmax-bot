@@ -11,7 +11,7 @@ services:
     - .env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.services.tgvmax.loadbalancer.server.port=8081"
+      # - "traefik.http.services.tgvmax.loadbalancer.server.port=80"
       - "traefik.http.routers.tgvmax.rule=Host(`tgvmax.${DNS_MAIN_BASE}`)"
       - "traefik.http.routers.tgvmax.entrypoints=websecure"
       - "traefik.http.routers.tgvmax.tls=true"
