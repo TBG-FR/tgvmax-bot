@@ -25,11 +25,11 @@ services:
     - .env
     labels:
       - "traefik.enable=true"
-      - "traefik.http.services.tgvmax.loadbalancer.server.port=8080"
-      - "traefik.http.routers.tgvmax.rule=Host(`api.tgvmax.${DNS_MAIN_BASE}`)"
-      - "traefik.http.routers.tgvmax.entrypoints=websecure"
-      - "traefik.http.routers.tgvmax.tls=true"
-      - "traefik.http.routers.tgvmax.tls.certresolver=letsencrypt"
+      - "traefik.http.services.tgvmax-api.loadbalancer.server.port=8080"
+      - "traefik.http.routers.tgvmax-api.rule=Host(`api.tgvmax.${DNS_MAIN_BASE}`)"
+      - "traefik.http.routers.tgvmax-api.entrypoints=websecure"
+      - "traefik.http.routers.tgvmax-api.tls=true"
+      - "traefik.http.routers.tgvmax-api.tls.certresolver=letsencrypt"
     volumes:
       # Database
       - ./tgvmax.sqlite:/usr/src/tgvmax.sqlite
