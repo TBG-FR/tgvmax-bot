@@ -17,6 +17,8 @@ services:
       - "traefik.http.routers.tgvmax.tls=true"
       - "traefik.http.routers.tgvmax.tls.certresolver=letsencrypt"
       - "traefik.http.routers.tgvmax.middlewares=auth-basic"
+    networks:
+      - hosting_default
   #
   back:
     container_name: tgvmax-back
@@ -27,11 +29,16 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.tgvmax-api.loadbalancer.server.port=8080"
-      - "traefik.http.routers.tgvmax-api.rule=Host(`api.tgvmax.${DNS_MAIN_BASE}`)"
+      - "traefik.http.routers.tgvmax-api.rule=Host(`api.tgvmax.${DNS_MAIN_BASE}`) && PathPrefix(`/api`)"
       - "traefik.http.routers.tgvmax-api.entrypoints=websecure"
       - "traefik.http.routers.tgvmax-api.tls=true"
       - "traefik.http.routers.tgvmax-api.tls.certresolver=letsencrypt"
     volumes:
       # Database
       - ./tgvmax.sqlite:/usr/src/tgvmax.sqlite
+    networks:
+      - hosting_default
 #
+networks:
+  hosting_default:
+    external: true
