@@ -29,7 +29,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.tgvmax-api.loadbalancer.server.port=8080"
-      - "traefik.http.routers.tgvmax-api.rule=Host(`api.tgvmax.${DNS_MAIN_BASE}`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.tgvmax-api.rule=Host(`tgvmax.${DNS_MAIN_BASE}`) && PathPrefix(`/api`)"
       - "traefik.http.routers.tgvmax-api.entrypoints=websecure"
       - "traefik.http.routers.tgvmax-api.tls=true"
       - "traefik.http.routers.tgvmax-api.tls.certresolver=letsencrypt"
